@@ -1,0 +1,49 @@
+% This code apply exploratory factor analysis on the chosen gait parameters.
+% This code is related to the publication Song Liu et.al, 
+% "A Novel Assessment of Hindlimb Locomotor Function in Spinal Cord Contusion Rats: Exploratory Factor Analysis-based Combination of Catwalk Parameters", 2022.
+
+clear;
+clc;
+
+filename = './RunStatistics.xlsx';
+df = xlsread(filename,'RunStatistics');
+
+df(:,217)=max(df(:,41),df(:,99));
+df(:,218)=max(df(:,42),df(:,100));
+df(:,219)=min(df(:,43),df(:,101));
+df(:,220)=max(df(:,44),df(:,102));
+df(:,221)=max(df(:,45),df(:,103));
+df(:,222)=max(df(:,46),df(:,104));
+df(:,223)=max(df(:,47),df(:,105));
+df(:,224)=max(df(:,48),df(:,106));
+df(:,225)=max(df(:,49),df(:,107));
+df(:,226)=min(df(:,50),df(:,108));
+df(:,227)=max(df(:,51),df(:,109));
+df(:,228)=max(df(:,52),df(:,110));
+df(:,229)=max(df(:,53),df(:,111));
+df(:,230)=max(df(:,54),df(:,112));
+df(:,231)=min(df(:,55),df(:,113));
+df(:,232)=max(df(:,56),df(:,114));
+df(:,233)=min(df(:,57),df(:,115));
+df(:,234)=min(df(:,58),df(:,116));
+df(:,235)=max(df(:,59),df(:,117));
+df(:,236)=max(df(:,65),df(:,123));
+df(:,237)=max(df(:,66),df(:,124));
+df(:,238)=max(df(:,67),df(:,125));
+df(:,239)=max(df(:,68),df(:,126));
+df(:,240)=min(df(:,69),df(:,127));
+
+[m, n]  = size(df);
+normalized_data = zeros(m, n);
+for i = 1:n
+    mea = mean( df(:, i) );
+    st = std( df(:, i) );
+    normalized_data(:, i) = ( df(:, i)-mea ) / st;
+end
+
+result_data(:,1) = normalized_data(:,1)*(0.044) + normalized_data(:,2)*(0.031) + normalized_data(:,3)*(0.064) + normalized_data(:,217)*(0.024) + normalized_data(:,218)*(0.033) + normalized_data(:,219)*(-0.036) + normalized_data(:,220)*(0.118) + normalized_data(:,221)*(-0.007) + normalized_data(:,222)*(-0.047) + normalized_data(:,223)*(0.119) + normalized_data(:,224)*(0.093) + normalized_data(:,225)*(0.12) + normalized_data(:,226)*(0.088) + normalized_data(:,227)*(-0.003) + normalized_data(:,228)*(-0.104) + normalized_data(:,229)*(-0.046) + normalized_data(:,230)*(0) + normalized_data(:,231)*(-0.054) + normalized_data(:,232)*(0.076) + normalized_data(:,233)*(-0.036) + normalized_data(:,234)*(-0.034) + normalized_data(:,235)*(0.062) + normalized_data(:,236)*(-0.022) + normalized_data(:,237)*(0.011) + normalized_data(:,238)*(0.022) + normalized_data(:,239)*(0.056) + normalized_data(:,240)*(0.052) + normalized_data(:,128)*(0.056) + normalized_data(:,135)*(0.051) + normalized_data(:,136)*(0.048) + normalized_data(:,137)*(0.024) + normalized_data(:,138)*(0.032) + normalized_data(:,139)*(0.036) + normalized_data(:,140)*(0.071) + normalized_data(:,141)*(0.051) + normalized_data(:,142)*(0.034) + normalized_data(:,154)*(-0.099) + normalized_data(:,155)*(-0.094);
+result_data(:,2) = normalized_data(:,1)*(0.127) + normalized_data(:,2)*(-0.114) + normalized_data(:,3)*(0.095) + normalized_data(:,217)*(0.088) + normalized_data(:,218)*(0.038) + normalized_data(:,219)*(0.007) + normalized_data(:,220)*(0.018) + normalized_data(:,221)*(-0.004) + normalized_data(:,222)*(0.003) + normalized_data(:,223)*(0.028) + normalized_data(:,224)*(-0.002) + normalized_data(:,225)*(0.019) + normalized_data(:,226)*(0.037) + normalized_data(:,227)*(-0.002) + normalized_data(:,228)*(0.005) + normalized_data(:,229)*(0.006) + normalized_data(:,230)*(0.001) + normalized_data(:,231)*(0.004) + normalized_data(:,232)*(-0.028) + normalized_data(:,233)*(-0.031) + normalized_data(:,234)*(0.046) + normalized_data(:,235)*(0.027) + normalized_data(:,236)*(-0.011) + normalized_data(:,237)*(0.062) + normalized_data(:,238)*(0.062) + normalized_data(:,239)*(-0.091) + normalized_data(:,240)*(0.082) + normalized_data(:,128)*(0.013) + normalized_data(:,135)*(-0.017) + normalized_data(:,136)*(0.043) + normalized_data(:,137)*(0.019) + normalized_data(:,138)*(0.127) + normalized_data(:,139)*(-0.115) + normalized_data(:,140)*(0.121) + normalized_data(:,141)*(0.069) + normalized_data(:,142)*(-0.097) + normalized_data(:,154)*(0.023) + normalized_data(:,155)*(0.021);
+result_data(:,3) = normalized_data(:,1) * (-0.016) + normalized_data(:,2) * (-0.02) + normalized_data(:,3) * (0.008) + normalized_data(:,217) * (0.02) + normalized_data(:,218) * (0.041) + normalized_data(:,219) * (-0.026) + normalized_data(:,220) * (-0.054) + normalized_data(:,221) * (0.132) + normalized_data(:,222) * (0.184) + normalized_data(:,223) * (-0.01) + normalized_data(:,224) * (0.039) + normalized_data(:,225) * (-0.038) + normalized_data(:,226) * (-0.09) + normalized_data(:,227) * (0.13) + normalized_data(:,228) * (0.191) + normalized_data(:,229) * (0.179) + normalized_data(:,230) * (0.12) + normalized_data(:,231) * (-0.007) + normalized_data(:,232) * (-0.016) + normalized_data(:,233) * (-0.035) + normalized_data(:,234) * (-0.04) + normalized_data(:,235) * (-0.02) + normalized_data(:,236) * (-0.016) + normalized_data(:,237) * (-0.035) + normalized_data(:,238) * (-0.037) + normalized_data(:,239) * (0.049) + normalized_data(:,240) * (-0.122) + normalized_data(:,128) * (-0.059) + normalized_data(:,135) * (-0.032) + normalized_data(:,136) * (-0.041) + normalized_data(:,137) * (0.02) + normalized_data(:,138) * (-0.013) + normalized_data(:,139) * (-0.016) + normalized_data(:,140) * (-0.03) + normalized_data(:,141) * (-0.058) + normalized_data(:,142) * (-0.02) + normalized_data(:,154) * (0.016) + normalized_data(:,155) * (0.036);
+result_data(:,4) = normalized_data(:,1) * (0.052) + normalized_data(:,2) * (0.079) + normalized_data(:,3) * (0.244) + normalized_data(:,217) * (0.027) + normalized_data(:,218) * (-0.048) + normalized_data(:,219) * (0.07) + normalized_data(:,220) * (0.127) + normalized_data(:,221) * (0.041) + normalized_data(:,222) * (0.057) + normalized_data(:,223) * (0.2) + normalized_data(:,224) * (0.198) + normalized_data(:,225) * (0.169) + normalized_data(:,226) * (0.263) + normalized_data(:,227) * (0.048) + normalized_data(:,228) * (-0.009) + normalized_data(:,229) * (0.042) + normalized_data(:,230) * (0.035) + normalized_data(:,231) * (0.065) + normalized_data(:,232) * (0.054) + normalized_data(:,233) * (0.105) + normalized_data(:,234) * (0.053) + normalized_data(:,235) * (-0.044) + normalized_data(:,236) * (-0.302) + normalized_data(:,237) * (-0.114) + normalized_data(:,238) * (-0.082) + normalized_data(:,239) * (0.169) + normalized_data(:,240) * (0.053) + normalized_data(:,128) * (-0.13) + normalized_data(:,135) * (-0.09) + normalized_data(:,136) * (-0.049) + normalized_data(:,137) * (0.332) + normalized_data(:,138) * (0.003) + normalized_data(:,139) * (0.105) + normalized_data(:,140) * (0.115) + normalized_data(:,141) * (-0.169) + normalized_data(:,142) * (-0.032) + normalized_data(:,154) * (-0.127) + normalized_data(:,155) * (-0.112);
+result_data(:,5) = normalized_data(:,1) * (-0.136) + normalized_data(:,2) * (-0.005) + normalized_data(:,3) * (-0.006) + normalized_data(:,217) * (0.174) + normalized_data(:,218) * (-0.164) + normalized_data(:,219) * (0.109) + normalized_data(:,220) * (0.012) + normalized_data(:,221) * (0.083) + normalized_data(:,222) * (0.064) + normalized_data(:,223) * (-0.017) + normalized_data(:,224) * (-0.058) + normalized_data(:,225) * (0.026) + normalized_data(:,226) * (-0.001) + normalized_data(:,227) * (0.07) + normalized_data(:,228) * (0.031) + normalized_data(:,229) * (0.068) + normalized_data(:,230) * (0.082) + normalized_data(:,231) * (0.119) + normalized_data(:,232) * (0.029) + normalized_data(:,233) * (0.273) + normalized_data(:,234) * (0.193) + normalized_data(:,235) * (0.033) + normalized_data(:,236) * (0.026) + normalized_data(:,237) * (0.275) + normalized_data(:,238) * (0.262) + normalized_data(:,239) * (-0.097) + normalized_data(:,240) * (-0.004) + normalized_data(:,128) * (0.015) + normalized_data(:,135) * (0.023) + normalized_data(:,136) * (-0.596) + normalized_data(:,137) * (0.023) + normalized_data(:,138) * (-0.072) + normalized_data(:,139) * (-0.016) + normalized_data(:,140) * (-0.176) + normalized_data(:,141) * (-0.15) + normalized_data(:,142) * (-0.082) + normalized_data(:,154) * (0.065) + normalized_data(:,155) * (-0.057);
+result_data
